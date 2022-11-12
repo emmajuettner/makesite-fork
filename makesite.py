@@ -57,7 +57,7 @@ def log(msg, *args):
     sys.stderr.write(msg.format(*args) + '\n')
 
 
-def truncate(text, words=25):
+def truncate(text, words=50):
     """Remove tags and truncate text to the specified number of words."""
     return ' '.join(re.sub('(?s)<.*?>', ' ', text).split()[:words])
 
@@ -74,6 +74,11 @@ def rfc_2822_format(date_str):
     """Convert yyyy-mm-dd date string to RFC 2822 format date string."""
     d = datetime.datetime.strptime(date_str, '%Y-%m-%d')
     return d.strftime('%a, %d %b %Y %H:%M:%S +0000')
+    
+def rfc_3339_format(date_str):
+    """Convert yyyy-mm-dd date string to RFC 3339 format date string."""
+    d = datetime.datetime.strptime(date_str, '%Y-%m-%d')
+    return d.isoformat()+'Z'
 
 
 def read_content(filename):
@@ -110,7 +115,8 @@ def read_content(filename):
     # Update the dictionary with content and RFC 2822 date.
     content.update({
         'content': text,
-        'rfc_2822_date': rfc_2822_format(content['date'])
+        'rfc_2822_date': rfc_2822_format(content['date']),
+        'rfc_3339_date': rfc_3339_format(content['date'])
     })
 
     return content
@@ -131,7 +137,7 @@ def make_pages(src, dst, layout, **params):
         content = read_content(src_path)
 
         page_params = dict(params, **content)
-
+        
         # Populate placeholders in content if content-rendering is enabled.
         if page_params.get('render') == 'yes':
             rendered_content = render(page_params['content'], **page_params)
@@ -154,7 +160,11 @@ def make_list(posts, dst, list_layout, item_layout, **params):
     items = []
     for post in posts:
         item_params = dict(params, **post)
-        item_params['summary'] = truncate(post['content'])
+        if 'summary' in post:
+            item_params['summary'] = post['summary']
+        else:
+            item_params['summary'] = truncate(post['content'])
+        item_params['full_content'] = post['content']
         item = render(item_layout, **item_params)
         items.append(item)
 
@@ -165,6 +175,24 @@ def make_list(posts, dst, list_layout, item_layout, **params):
     log('Rendering list => {} ...', dst_path)
     fwrite(dst_path, output)
 
+def get_latest_post_path():
+    posts_dir = 'content/posts/*.html'
+    sorted_post_paths = sorted(glob.glob(posts_dir), reverse=True)
+    return sorted_post_paths[0]
+
+def get_latest_post_date_rfc_3339():
+    latest_post_path = get_latest_post_path()
+    content = read_content(latest_post_path)
+    latest_post_date = render('{{ date }}', **content)
+    return rfc_3339_format(latest_post_date)
+
+def make_latest_post_blurb(**params):
+    latest_post_path = get_latest_post_path()
+    content = read_content(latest_post_path)
+    page_params = dict(params, **content)
+    blurb_format = '<a href="/posts/{{ slug }}">A Bad Dream</a>. Published on {{ date }}. {{ summary }}'
+    rendered_blurb = render(blurb_format, **page_params)
+    return rendered_blurb
 
 def main():
     # Create a new _site directory from scratch.
@@ -175,9 +203,9 @@ def main():
     # Default parameters.
     params = {
         'base_path': '',
-        'subtitle': 'Lorem Ipsum',
-        'author': 'Admin',
-        'site_url': 'http://localhost:8000',
+        'subtitle': 'Emma Juettner',
+        'author': 'Emma Juettner',
+        'site_url': 'https://emmajuettner.com',
         'current_year': datetime.datetime.now().year
     }
 
@@ -185,13 +213,21 @@ def main():
     if os.path.isfile('params.json'):
         params.update(json.loads(fread('params.json')))
 
+    # Find the latest post and generate a blurb for it
+    params['latest_post_blurb'] = make_latest_post_blurb(**params)
+    
+    # Find the latest post and save the date for the feeds
+    params['latest_post_date'] = get_latest_post_date_rfc_3339()
+
     # Load layouts.
     page_layout = fread('layout/page.html')
     post_layout = fread('layout/post.html')
     list_layout = fread('layout/list.html')
     item_layout = fread('layout/item.html')
-    feed_xml = fread('layout/feed.xml')
-    item_xml = fread('layout/item.xml')
+    rss_xml = fread('layout/rss.xml')
+    atom_xml = fread('layout/atom.xml')
+    rss_item_xml = fread('layout/rss_item.xml')
+    atom_item_xml = fread('layout/atom_item.xml')
 
     # Combine layouts to form final layouts.
     post_layout = render(page_layout, content=post_layout)
@@ -204,25 +240,21 @@ def main():
                page_layout, **params)
 
     # Create blogs.
-    blog_posts = make_pages('content/blog/*.md',
-                            '_site/blog/{{ slug }}/index.html',
-                            post_layout, blog='blog', **params)
-    news_posts = make_pages('content/news/*.html',
-                            '_site/news/{{ slug }}/index.html',
-                            post_layout, blog='news', **params)
-
+    blog_posts = make_pages('content/posts/*.html',
+                            '_site/posts/{{ slug }}/index.html',
+                            post_layout, blog='posts', **params)
+    
     # Create blog list pages.
-    make_list(blog_posts, '_site/blog/index.html',
-              list_layout, item_layout, blog='blog', title='Blog', **params)
-    make_list(news_posts, '_site/news/index.html',
-              list_layout, item_layout, blog='news', title='News', **params)
+    make_list(blog_posts, '_site/posts/index.html',
+              list_layout, item_layout, blog='posts', title='Posts', **params)
 
-    # Create RSS feeds.
-    make_list(blog_posts, '_site/blog/rss.xml',
-              feed_xml, item_xml, blog='blog', title='Blog', **params)
-    make_list(news_posts, '_site/news/rss.xml',
-              feed_xml, item_xml, blog='news', title='News', **params)
-
+    # Create RSS feed.
+    make_list(blog_posts, '_site/feed/rss.xml',
+              rss_xml, rss_item_xml, blog='posts', title='Posts', **params)
+              
+    # Create Atom feed.
+    make_list(blog_posts, '_site/feed/atom.xml',
+              atom_xml, atom_item_xml, blog='posts', title='Posts', **params)
 
 # Test parameter to be set temporarily by unit tests.
 _test = None

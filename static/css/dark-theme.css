@@ -1,0 +1,57 @@
+:root {
+	--header-image: url('/img/header-dark-mode.png');
+	--body-bg-image: url('/img/bg-dark-mode.png');
+
+	/* colors */
+	--content: #43256E;
+}
+
+body {
+	background-color: black;
+	background-size: 400px;
+	color: #ddd;
+	background-image: var(--body-bg-image);
+}
+
+#container a {
+	color: #599fea;
+}
+
+aside {
+	background-color: black;
+}
+
+main {
+	background-color: black;
+}
+
+footer {
+	background-color: black;
+	/* background color for footer */
+}
+
+h1,
+h2,
+h3 {
+	color: #ddd;
+}
+
+strong {
+	/* this styles bold text */
+	color: #ddd;
+}
+
+.box {
+	background-color: black;
+	border: 1px solid #ddd;
+}
+
+#topBar {
+	background-color: black;
+}
+
+#topBar button {
+	background-color: black;
+	border: 1px solid #ddd;
+	color: #ddd;
+}

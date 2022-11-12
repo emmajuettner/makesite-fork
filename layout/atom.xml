@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/xsl/atom.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<id>https://emmajuettner.com/feed/atom.xml</id>
+
+<title>Emma Juettner - Posts</title>
+<link rel="self" href="{{ site_url }}/feed/atom.xml" />
+<subtitle>The latest updates from Emma's website</subtitle>
+<updated>{{ latest_post_date }}</updated>
+<author>
+	<name>Emma Juettner</name>
+</author>
+
+{{ content }}
+
+</feed>

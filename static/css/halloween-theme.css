@@ -1,0 +1,59 @@
+:root {
+	--body-bg-image: url('/img/bg-halloween-mode.png');
+
+	/* colors */
+	--content: black;
+}
+
+body {
+	background-color: black;
+	background-size: 1200px;
+	color: white;
+	background-image: var(--body-bg-image);
+}
+
+#container a {
+	color: red;
+}
+
+aside {
+	background-color: black;
+	border: 1px solid white;
+}
+
+main {
+	background-color: black;
+	border: 1px solid white;
+}
+
+footer {
+	background-color: black;
+	border: 1px solid white;
+}
+
+h1,
+h2,
+h3 {
+	color: white;
+}
+
+strong {
+	/* this styles bold text */
+	color: white;
+}
+
+.box {
+	background-color: black;
+	border: 1px solid white;
+}
+
+#topBar {
+	background-color: black;
+	border: 1px solid white;
+}
+
+#topBar button {
+	background-color: black;
+	border: 1px solid white;
+	color: white;
+}

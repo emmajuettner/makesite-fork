@@ -1,3 +1,8 @@
+Copyright (c) 2022 Emma Juettner. All rights reserved.
+
+This software is a derivative of the original makesite.py.
+The license text of the original makesite.py is included below.
+
 The MIT License (MIT)
 =====================
 Copyright (c) 2018 Sunaina Pai

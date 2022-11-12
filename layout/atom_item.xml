@@ -1,0 +1,16 @@
+<entry>
+<title>{{ title }}</title>
+<link href="{{ site_url }}/{{ blog }}/{{ slug }}/" />
+<id>{{ site_url }}/{{ blog }}/{{ slug }}/</id>
+<summary>
+<![CDATA[
+{{ summary }}
+]]>
+</summary>
+<content type="html">
+<![CDATA[
+{{ full_content }}
+]]>
+</content>
+<updated>{{ rfc_3339_date }}</updated>
+</entry>

@@ -1,0 +1,225 @@
+/* user styles */
+
+/* these are variables that are being used in the code
+these tended to confuse some people, so I only kept 
+the images as variables */
+
+
+
+/*Palette: https://coolors.co/320031-1d000b-8b0255-51004a-900033*/
+
+/* if you have the URL of a font, you can set it below */
+/* feel free to delete this if it's not your vibe */
+
+/* this seems like a lot for just one font and I would have to agree 
+but I wanted to include an example of how to include a custom font.
+If you download a font file you can upload it onto your Neocities
+and then link it! Many fonts have separate files for each style
+(bold, italic, etc. T_T) which is why there are so many!
+
+*/
+
+@font-face {
+	font-family: Vollkorn;
+	src: url('/fonts/vollkorn/Vollkorn-Regular.ttf');
+}
+
+@font-face {
+	font-family: Vollkorn;
+	src: url('/fonts/vollkorn/Vollkorn-Bold.ttf');
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Vollkorn;
+	src: url('/fonts/vollkorn/Vollkorn-Italic.ttf');
+	font-style: italic;
+}
+
+@font-face {
+	font-family: Vollkorn;
+	src: url('/fonts/vollkorn/Vollkorn-BoldItalic.ttf');
+	font-style: italic;
+	font-weight: bold;
+}
+
+body {
+	font-family: 'Vollkorn', serif;
+	font-size: 1.2em;
+	margin: 0;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* below this line is CSS for the layout */
+
+/* this is a CSS comment
+to uncomment a line of CSS, remove the * and the /
+before and after the text */
+
+
+/* the "container" is what wraps your entire website */
+/* if you want something (like the header) to be Wider than
+the other elements, you will need to move that div outside
+of the container */
+#container {
+	max-width: 900px;
+	/* this is the width of your layout! */
+	/* if you change the above value, scroll to the bottom
+and change the media query according to the comment! */
+	margin: 0 auto;
+	/* this centers the entire page */
+}
+
+/* the area below is for all links on your page
+EXCEPT for the navigation */
+#container a {
+	font-weight: bold;
+	/* if you want to remove the underline
+you can add a line below here that says:
+text-decoration:none; */
+}
+
+#flex {
+	display: flex;
+}
+
+/* this styles BOTH sidebars
+if you want to style them separately,
+create styles for #leftSidebar and #rightSidebar */
+aside {
+	width: 200px;
+	padding: 20px;
+	font-size: smaller;
+	/* this makes the sidebar text slightly smaller */
+}
+
+/* this is the color of the main content area,
+between the sidebars! */
+main {
+	flex: 1;
+	padding: 20px;
+	order: 2;
+}
+
+/* what's this "order" stuff about??
+allow me to explain!
+if you're using both sidebars, the "order" value
+tells the CSS the order in which to display them.
+left sidebar is 1, content is 2, and right sidebar is 3! */
+
+#leftSidebar {
+	order: 1;
+	margin-right: 20px;
+}
+
+#rightSidebar {
+	order: 3;
+}
+
+footer {
+	width: 100%;
+	height: 40px;
+	padding: 10px;
+	text-align: center;
+	/* this centers the footer text */
+	margin-bottom: 10px;
+}
+
+h1 {
+	font-size: 2em;
+	text-align: center;
+}
+
+/* this is just a cool box, it's the darker colored one */
+.box {
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+/* CSS for extras */
+
+#topBar {
+	width: 100%;
+	height: 30px;
+	padding: 5px;
+	font-size: smaller;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#topBar button {
+	border-radius: 10px;
+	font-family: Vollkorn;
+	font-weight: bold;
+}
+
+img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+details summary {
+	cursor: pointer;
+}
+
+/* BELOW THIS POINT IS MEDIA QUERY */
+
+/* so you wanna change the width of your page? 
+by default, the container width is 900px.
+in order to keep things responsive, take your new height,
+and then subtrack it by 100. use this new number as the 
+"max-width" value below
+*/
+
+@media only screen and (max-width: 800px) {
+	#flex {
+		flex-wrap: wrap;
+	}
+
+	aside {
+		margin-top: 20px;
+		width: 95%;
+	}
+
+	/* the order of the items is adjusted here for responsiveness!
+since the sidebars would be too small on a mobile device.
+feel free to play around with the order!
+*/
+	main {
+		order: 1;
+		max-width: 95%;
+		margin: auto;
+	}
+
+	#leftSidebar {
+		order: 2;
+		margin: auto;
+		margin-top: 10px;
+	}
+
+	#rightSidebar {
+		order: 3;
+	}
+	
+	#topBar {
+		width: 95%;
+		margin: auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	
+	footer {
+		width: 95%;
+		margin: auto;
+		margin-bottom: 10px;
+	}
+
+	#navbar ul {
+		flex-wrap: wrap;
+	}
+}
