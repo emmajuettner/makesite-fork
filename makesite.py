@@ -199,9 +199,9 @@ def main():
     if os.path.isdir('_site'):
         fileList = os.listdir('_site')
         for fileName in fileList:
-            if fileName != '.git' and os.path.isdir('_site/' + fileName):
+            if '.git' not in fileName and os.path.isdir('_site/' + fileName):
                 shutil.rmtree('_site/' + fileName)
-            elif fileName != '.git':
+            elif '.git' not in fileName:
                 os.remove('_site/' + fileName)
     # Copy in static content to the _site directory
     shutil.copytree('static', '_site', dirs_exist_ok=True)
