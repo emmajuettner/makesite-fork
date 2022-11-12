@@ -195,10 +195,16 @@ def make_latest_post_blurb(**params):
     return rendered_blurb
 
 def main():
-    # Create a new _site directory from scratch.
+    # Clear out the old contents of the _site directory, leaving the git info unchanged.
     if os.path.isdir('_site'):
-        shutil.rmtree('_site')
-    shutil.copytree('static', '_site')
+        fileList = os.listdir('_site')
+        for fileName in fileList:
+            if fileName != '.git' and os.path.isdir('_site/' + fileName):
+                shutil.rmtree('_site/' + fileName)
+            elif fileName != '.git':
+                os.remove('_site/' + fileName)
+    # Copy in static content to the _site directory
+    shutil.copytree('static', '_site', dirs_exist_ok=True)
 
     # Default parameters.
     params = {
@@ -235,6 +241,8 @@ def main():
 
     # Create site pages.
     make_pages('content/_index.html', '_site/index.html',
+               page_layout, **params)
+    make_pages('content/_404.html', '_site/404.html',
                page_layout, **params)
     make_pages('content/[!_]*.html', '_site/{{ slug }}/index.html',
                page_layout, **params)
