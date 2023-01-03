@@ -23,7 +23,9 @@ xmlns:atom="http://www.w3.org/2005/Atom">
       <xsl:for-each select="atom:entry">
 	  <hr />
       <div class="article">
-        <h2><a href="{id}" rel="bookmark"><xsl:value-of select="atom:title"/></a></h2>
+        <h2><a rel="bookmark">
+			<xsl:attribute name="href"><xsl:value-of select="atom:id"/></xsl:attribute>
+			<xsl:value-of select="atom:title"/></a></h2>
 		<p><xsl:value-of select="substring-before(atom:updated, 'T')"/></p>
         <p><xsl:value-of select="atom:summary"/></p>
 		<div>

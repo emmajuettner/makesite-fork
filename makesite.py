@@ -190,7 +190,7 @@ def make_latest_post_blurb(**params):
     latest_post_path = get_latest_post_path()
     content = read_content(latest_post_path)
     page_params = dict(params, **content)
-    blurb_format = '<a href="/posts/{{ slug }}">A Bad Dream</a>. Published on {{ date }}. {{ summary }}'
+    blurb_format = '<a href="/posts/{{ slug }}">{{ title }}</a>. Published on {{ date }}. {{ summary }}'
     rendered_blurb = render(blurb_format, **page_params)
     return rendered_blurb
 
