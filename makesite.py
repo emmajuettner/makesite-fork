@@ -212,7 +212,9 @@ def main():
         'subtitle': 'Emma Juettner',
         'author': 'Emma Juettner',
         'site_url': 'https://emmajuettner.com',
-        'current_year': datetime.datetime.now().year
+        'current_year': datetime.datetime.now().year,
+        'current_month': datetime.datetime.now().strftime('%B'),
+        'current_day': datetime.datetime.now().day
     }
 
     # If params.json exists, load it.
