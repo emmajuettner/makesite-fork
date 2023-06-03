@@ -1,5 +1,5 @@
 #!/bin/sh
-python makesite.py
+python3 makesite.py
 echo "Finished generating site"
 cd _site
-python -m http.server
+python3 -m http.server

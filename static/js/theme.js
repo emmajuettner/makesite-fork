@@ -32,4 +32,7 @@ if (localStorage.getItem('current-theme') !== undefined && localStorage.getItem(
 } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
 	console.log("theme preference not set but dark mode preferred, using dark theme");
 	theme_set("dark");
+} else {
+	console.log("no previous theme preference and no dark mode preference, using light theme");
+	theme_set("light");
 }
