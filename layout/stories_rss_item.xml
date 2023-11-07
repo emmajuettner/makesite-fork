@@ -1,0 +1,11 @@
+<item>
+<title>"{{ title }}" by {{ author }}</title>
+<link>{{ link }}</link>
+<guid>{{ link }}</guid>
+<description>
+<![CDATA[
+{{ summary }} {{ wordcount }} words. <a href="{{ link }}">Link to story.</a>
+]]>
+</description>
+<pubDate>{{ rfc_3339_date }}</pubDate>
+</item>

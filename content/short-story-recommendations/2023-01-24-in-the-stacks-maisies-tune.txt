@@ -1,0 +1,5 @@
+<!-- title: In The Stacks (Maisie's Tune) -->
+<!-- author: Robin Sloan -->
+<!-- summary: A story about death, music, and libraries... and, it's interactive! With sound! -->
+<!-- wordcount: 3453 -->
+<!-- link: https://brandnewbox.com/inthestacks/ -->

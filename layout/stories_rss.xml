@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/xsl/short-story-recommendations-rss.xsl" type="text/xsl"?>
+<rss version="2.0">
+
+<channel>
+<title>Emma Juettner - Short Story Recommendations</title>
+<link>{{ site_url }}/short-story-recommendations</link>
+<description>Emma's Short Story Recommendations</description>
+
+{{ content }}
+
+</channel>
+</rss>

@@ -1,0 +1,5 @@
+<!-- title: Better Living Through Algorithms -->
+<!-- author: Naomi Kritzer -->
+<!-- summary: Maybe the real algorithm... was the friends we made along the way. -->
+<!-- wordcount: 5610 -->
+<!-- link: https://clarkesworldmagazine.com/kritzer_05_23/ -->

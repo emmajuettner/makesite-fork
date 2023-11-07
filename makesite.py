@@ -154,6 +154,24 @@ def make_pages(src, dst, layout, **params):
 
     return sorted(items, key=lambda x: x['date'], reverse=True)
 
+def make_collection(src, **params):
+	"""Generate a collection of objects from content in a list of files."""
+	items = []
+	
+	for src_path in glob.glob(src):
+		content = read_content(src_path)
+		
+		page_params = dict(params, **content)
+		
+		# Populate placeholders in content if content-rendering is enabled.
+		if page_params.get('render') == 'yes':
+			rendered_content = render(page_params['content'], **page_params)
+			page_params['content'] = rendered_content
+			content['content'] = rendered_content
+		
+		items.append(content)
+	
+	return sorted(items, key=lambda x: x['date'], reverse=True)
 
 def make_list(posts, dst, list_layout, item_layout, **params):
     """Generate list page for a blog."""
@@ -232,14 +250,19 @@ def main():
     post_layout = fread('layout/post.html')
     list_layout = fread('layout/list.html')
     item_layout = fread('layout/item.html')
+    short_story_page_layout = fread('layout/short-story-recommendations.html')
+    short_story_item_layout = fread('layout/story_item.html')
     rss_xml = fread('layout/rss.xml')
     atom_xml = fread('layout/atom.xml')
+    stories_rss_xml = fread('layout/stories_rss.xml')
     rss_item_xml = fread('layout/rss_item.xml')
     atom_item_xml = fread('layout/atom_item.xml')
+    stories_rss_item_xml = fread('layout/stories_rss_item.xml')
 
     # Combine layouts to form final layouts.
     post_layout = render(page_layout, content=post_layout)
     list_layout = render(page_layout, content=list_layout)
+    short_story_layout = render(page_layout, content=short_story_page_layout)
 
     # Create site pages.
     make_pages('content/_index.html', '_site/index.html',
@@ -248,6 +271,16 @@ def main():
                page_layout, **params)
     make_pages('content/[!_]*.html', '_site/{{ slug }}/index.html',
                page_layout, **params)
+    
+    # Create short story recommendations page.
+    short_story_recommendations = make_collection('content/short-story-recommendations/*.txt', **params)
+    make_list(short_story_recommendations, '_site/short-story-recommendations/index.html',
+    		  short_story_layout, short_story_item_layout, title='Short Story Recommendations', **params)
+    
+    # Create short stories RSS feed.
+    make_list(short_story_recommendations, '_site/feed/short-story-recommendations-rss.xml',
+    		  stories_rss_xml, stories_rss_item_xml, blog='short-story-recommendations', 
+    		  title='Short Story Recommendations', **params)
 
     # Create blogs.
     blog_posts = make_pages('content/posts/*.html',
