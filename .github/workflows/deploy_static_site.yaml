@@ -9,8 +9,7 @@ jobs:
     steps:
       - name: Creates static site
         uses: actions/checkout@v2
-        run:  sh ./build_static_site.sh # some command from your repository that creates
-                            			# output to "source-directory"
+        run:  sh ./build_static_site.sh # some command from your repository that creates output to "source-directory"
       - name: Pushes to the static site repository
         uses: cpina/github-action-push-to-another-repository@07c4d7b3def0a8ebe788a8f2c843a4e1de4f6900
         env:
