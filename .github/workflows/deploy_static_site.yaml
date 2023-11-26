@@ -7,8 +7,9 @@ jobs:
   deploy_static_site:
     runs-on: ubuntu-latest
     steps:
-      - name: Creates static site
+      - name: Checks out site repo
         uses: actions/checkout@v2
+      - name: Builds static site
         run:  sh ./build_static_site.sh # some command from your repository that creates output to "source-directory"
       - name: Pushes to the static site repository
         uses: cpina/github-action-push-to-another-repository@07c4d7b3def0a8ebe788a8f2c843a4e1de4f6900
