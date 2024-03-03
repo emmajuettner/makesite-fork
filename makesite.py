@@ -246,23 +246,31 @@ def main():
     params['latest_post_date'] = get_latest_post_date_rfc_3339()
 
     # Load layouts.
+    # Main blog
     page_layout = fread('layout/page.html')
     post_layout = fread('layout/post.html')
     list_layout = fread('layout/list.html')
     item_layout = fread('layout/item.html')
-    short_story_page_layout = fread('layout/short-story-recommendations.html')
-    short_story_item_layout = fread('layout/story_item.html')
     rss_xml = fread('layout/rss.xml')
     atom_xml = fread('layout/atom.xml')
-    stories_rss_xml = fread('layout/stories_rss.xml')
     rss_item_xml = fread('layout/rss_item.xml')
     atom_item_xml = fread('layout/atom_item.xml')
+    # Short stories
+    short_story_page_layout = fread('layout/short-story-recommendations.html')
+    short_story_item_layout = fread('layout/story_item.html')
+    stories_rss_xml = fread('layout/stories_rss.xml')
     stories_rss_item_xml = fread('layout/stories_rss_item.xml')
-
+	# Net art
+    net_art_page_layout = fread('layout/net-art-links.html')
+    net_art_item_layout = fread('layout/net_art_item.html')
+    net_art_rss_xml = fread('layout/net_art_rss.xml')
+    net_art_rss_item_xml = fread('layout/net_art_rss_item.xml')
+    
     # Combine layouts to form final layouts.
     post_layout = render(page_layout, content=post_layout)
     list_layout = render(page_layout, content=list_layout)
     short_story_layout = render(page_layout, content=short_story_page_layout)
+    net_art_layout = render(page_layout, content=net_art_page_layout)
 
     # Create site pages.
     make_pages('content/_index.html', '_site/index.html',
@@ -281,6 +289,16 @@ def main():
     make_list(short_story_recommendations, '_site/feed/short-story-recommendations-rss.xml',
     		  stories_rss_xml, stories_rss_item_xml, blog='short-story-recommendations', 
     		  title='Short Story Recommendations', **params)
+
+    # Create net art links page.
+    net_art_links = make_collection('content/net-art-links/*.txt', **params)
+    make_list(net_art_links, '_site/net-art-links/index.html',
+    		  net_art_layout, net_art_item_layout, title='Net Art Links', **params)
+    
+    # Create net art links RSS feed.
+    make_list(net_art_links, '_site/feed/net-art-links-rss.xml',
+    		  net_art_rss_xml, net_art_rss_item_xml, blog='net-art-links', 
+    		  title='Net Art Links', **params)
 
     # Create blogs.
     blog_posts = make_pages('content/posts/*.html',
