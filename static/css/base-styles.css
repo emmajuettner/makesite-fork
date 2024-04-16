@@ -222,3 +222,42 @@ feel free to play around with the order!
 		flex-wrap: wrap;
 	}
 }
+
+/* Print Styles */
+@media print {
+	/* add URLs after links when printing pages */
+	a::after {
+		content: " (" attr(href) ") ";
+	}
+	
+	/* but don't put a URL after the main header on the page, since that prints at the top of the page already*/
+	h1 > a::after {
+		content: none;
+	}
+	
+	/* use the mobile layout for printing*/
+	#flex {
+		flex-wrap: wrap;
+	}
+	
+	main {
+		order: 1;
+		max-width: 95%;
+		margin: auto;
+	}
+
+	#leftSidebar {
+		order: 2;
+		margin: auto;
+		margin-top: 10px;
+	}
+	
+	#navbar ul {
+		flex-wrap: wrap;
+	}
+	
+	aside {
+		margin-top: 20px;
+		width: 95%;
+	}
+}
