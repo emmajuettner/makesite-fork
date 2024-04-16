@@ -225,9 +225,14 @@ feel free to play around with the order!
 
 /* Print Styles */
 @media print {
-	/* add URLs after links when printing pages */
+	/* add URLs after links when printing pages, following this post: 
+	https://hamatti.org/posts/display-full-url-after-link-when-page-is-printed/ */
 	a::after {
 		content: " (" attr(href) ") ";
+	}
+	
+	a[href^="/"]::after {
+		content: " (https://emmajuettner.com" attr(href) ") ";
 	}
 	
 	/* but don't put a URL after the main header on the page, since that prints at the top of the page already*/
