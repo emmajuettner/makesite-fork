@@ -236,7 +236,7 @@ feel free to play around with the order!
 	}
 	
 	/* but don't put a URL after the main header on the page, since that prints at the top of the page already*/
-	h1 > a::after {
+	h1 > a[href^="/"]::after {
 		content: none;
 	}
 	
