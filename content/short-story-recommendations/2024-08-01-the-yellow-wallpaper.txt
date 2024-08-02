@@ -1,0 +1,5 @@
+<!-- title: The Yellow Wallpaper -->
+<!-- author: Charlotte Perkins Gilman -->
+<!-- summary: It's a classic for a reason. Also it has sentences like "It is so pleasant to be out in this great room and creep around as I please!" which is a big mood even though the context is... well, creepy. -->
+<!-- wordcount: 6078 -->
+<!-- link: https://www.gutenberg.org/cache/epub/1952/pg1952-images.html -->
