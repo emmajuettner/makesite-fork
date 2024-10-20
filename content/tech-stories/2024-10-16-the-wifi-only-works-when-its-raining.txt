@@ -1,0 +1,5 @@
+<!-- title: The Wi-Fi only works when it's raining -->
+<!-- author: Predrag -->
+<!-- summary: An investigation into a mysterious Wi-Fi glitch. -->
+<!-- wordcount: 1817 -->
+<!-- link: https://predr.ag/blog/wifi-only-works-when-its-raining/ -->

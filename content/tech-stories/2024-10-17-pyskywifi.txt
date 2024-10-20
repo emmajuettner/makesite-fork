@@ -1,0 +1,5 @@
+<!-- title: PySkyWiFi: completely free, unbelievably stupid wi-fi on long-haul flights -->
+<!-- author: Robert Heaton -->
+<!-- summary: A brilliantly ridiculous concept: squeezing the entire internet through the name field of an airmiles account. -->
+<!-- wordcount: 4360 -->
+<!-- link: https://robertheaton.com/pyskywifi/ -->

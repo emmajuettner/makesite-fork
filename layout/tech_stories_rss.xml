@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="/xsl/tech-story-recommendations-rss.xsl" type="text/xsl"?>
+<rss version="2.0">
+
+<channel>
+<title>Emma Juettner - Tech Stories</title>
+<link>{{ site_url }}/tech-stories</link>
+<description>Emma's Tech Story Recommendations</description>
+
+{{ content }}
+
+</channel>
+</rss>
