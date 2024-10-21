@@ -1,0 +1,5 @@
+<!-- title: The case of the 500-mile email -->
+<!-- author: Trey Harris -->
+<!-- summary: In which emails suddenly refuse to travel more than ~500 miles. -->
+<!-- wordcount: 995 -->
+<!-- link: http://www.ibiblio.org/harris/500milemail.html -->
