@@ -2,6 +2,9 @@ name: deploy_static_site
 
 on:
   workflow_dispatch:       # allow running manually
+  push:
+    branches:
+      - master
 
 jobs:
   deploy_static_site:
