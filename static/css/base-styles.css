@@ -166,6 +166,23 @@ details summary {
 	cursor: pointer;
 }
 
+.recipe {
+	border: 1px solid black;
+	margin: 10px;
+	padding: 20px;
+	padding-top: 5px;
+}
+
+.recipe h2 {
+	text-decoration: underline;
+	text-align: center;
+}
+
+.recipe h3 {
+	text-decoration: underline;
+	text-align: center;
+}
+
 /* BELOW THIS POINT IS MEDIA QUERY */
 
 /* so you wanna change the width of your page? 
