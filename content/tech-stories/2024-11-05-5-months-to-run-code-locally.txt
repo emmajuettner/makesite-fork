@@ -1,0 +1,5 @@
+<!-- title: 5 Months to Run Code Locally -->
+<!-- author: Nathan Spencer -->
+<!-- summary: A Kafkaesque tale of corporate security/risk bureaucracy, aka a very accurate description of what it's like to work as a software developer at a large financial institution. (Can you tell I relate to this one?) -->
+<!-- wordcount: 1555 -->
+<!-- link: https://nathancspencer.com/5months/ -->
