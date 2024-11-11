@@ -1,0 +1,11 @@
+<item>
+<title>{{ title }}</title>
+<link>{{ link }}</link>
+<guid>{{ link }}</guid>
+<description>
+<![CDATA[
+Via {{ org }}. {{ summary }} <a href="{{ link }}">Link to more info.</a>
+]]>
+</description>
+<pubDate>{{ rfc_3339_date }}</pubDate>
+</item>

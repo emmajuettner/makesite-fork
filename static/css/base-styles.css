@@ -166,6 +166,10 @@ details summary {
 	cursor: pointer;
 }
 
+.mutualAidRequest p {
+	margin-left: 50px;
+}
+
 .recipe {
 	border: 1px solid black;
 	margin: 10px;
