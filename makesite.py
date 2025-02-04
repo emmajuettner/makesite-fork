@@ -265,18 +265,12 @@ def main():
     tech_story_item_layout = fread('layout/story_item.html')
     tech_stories_rss_xml = fread('layout/tech_stories_rss.xml')
     tech_stories_rss_item_xml = fread('layout/stories_rss_item.xml')
-    # Mutual aid requests
-    mutual_aid_requests_layout = fread('layout/chicago-mutual-aid-requests.html')
-    mutual_aid_requests_item_layout = fread('layout/mutual_aid_requests_item.html')
-    mutual_aid_requests_rss_xml = fread('layout/chicago_mutual_aid_requests_rss.xml')
-    mutual_aid_requests_rss_item_xml = fread('layout/mutual_aid_requests_rss_item.xml')
-	
+    
     # Combine layouts to form final layouts.
     post_layout = render(page_layout, content=post_layout)
     list_layout = render(page_layout, content=list_layout)
     short_story_layout = render(page_layout, content=short_story_page_layout)
     tech_story_layout = render(page_layout, content=tech_story_page_layout)
-    mutual_aid_requests_layout = render(page_layout, content=mutual_aid_requests_layout)
 
     # Create site pages.
     make_pages('content/_index.html', '_site/index.html',
@@ -306,16 +300,6 @@ def main():
     		  tech_stories_rss_xml, stories_rss_item_xml, blog='tech-stories', 
     		  title='Tech Stories', **params)
     		  
-    # Create mutual aid requests page.
-    chicago_mutual_aid_requests = make_collection('content/mutual-aid-requests/*.txt', **params)
-    make_list(chicago_mutual_aid_requests, '_site/chicago-mutual-aid-requests/index.html',
-    		  mutual_aid_requests_layout, mutual_aid_requests_item_layout, title='Chicago Mutual Aid Requests', **params)
-    
-    # Create mutual aid requests RSS feed.
-    make_list(chicago_mutual_aid_requests, '_site/feed/chicago-mutual-aid-requests-rss.xml',
-    		  mutual_aid_requests_rss_xml, mutual_aid_requests_rss_item_xml, blog='chicago-mutual-aid-requests', 
-    		  title='Chicago Mutual Aid Requests', **params)
-
     # Create blogs.
     blog_posts = make_pages('content/posts/*.html',
                             '_site/posts/{{ slug }}/index.html',
