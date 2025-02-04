@@ -1,0 +1,117 @@
+@font-face {
+  font-family: Hanken Grotesk;
+  src: url('/fonts/hanken-grotesk/webfonts/hanken-grotesk-latin-400-normal.woff') format('woff'),
+	url('/fonts/hanken-grotesk/webfonts/hanken-grotesk-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: Hanken Grotesk;
+  src: url('/fonts/hanken-grotesk/webfonts/hanken-grotesk-latin-700-normal.woff') format('woff'),
+	url('/fonts/hanken-grotesk/webfonts/hanken-grotesk-latin-700-normal.woff2') format('woff2');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Hanken Grotesk;
+  src: url('/fonts/hanken-grotesk/webfonts/hanken-grotesk-latin-400-italic.woff') format('woff'),
+	url('/fonts/hanken-grotesk/webfonts/hanken-grotesk-latin-400-italic.woff2') format('woff2');
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Hanken Grotesk;
+  src: url('/fonts/hanken-grotesk/webfonts/hanken-grotesk-latin-700-italic.woff') format('woff'),
+	url('/fonts/hanken-grotesk/webfonts/hanken-grotesk-latin-700-italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: bold;
+}
+
+@font-face {
+	font-family: Vollkorn;
+	src: url('/fonts/vollkorn/Vollkorn-Regular.ttf');
+}
+
+@font-face {
+	font-family: Vollkorn;
+	src: url('/fonts/vollkorn/Vollkorn-Bold.ttf');
+	font-weight: bold;
+}
+
+@font-face {
+	font-family: Vollkorn;
+	src: url('/fonts/vollkorn/Vollkorn-Italic.ttf');
+	font-style: italic;
+}
+
+@font-face {
+	font-family: Vollkorn;
+	src: url('/fonts/vollkorn/Vollkorn-BoldItalic.ttf');
+	font-style: italic;
+	font-weight: bold;
+}
+
+:root {
+  --main-bg-color: #fefefe;
+  --main-font-color: #030000;
+  --buttonlink-bg-color: #4B6858;
+  --buttonlink-font-color: #fefefe;
+}
+
+body {
+	font-family: 'Hanken Grotesk', sans-serif;
+	font-size: 18px;
+	margin: 0 auto;
+	padding: 2em;
+	max-width: 650px;
+	background-color: var(--main-bg-color);
+	color: var(--main-font-color);
+}
+
+h1 {
+	font-family: 'Vollkorn', serif;
+	font-size: 2.5em;
+}
+
+h2 {
+	font-family: 'Vollkorn', serif;
+	font-size: 2em;
+}
+
+h3 {
+	text-decoration: underline;
+}
+
+h4 {
+	font-weight: normal;
+	margin-top: 0px;
+	margin-bottom: -4px;
+}
+
+hr {
+	margin-top: 2.5em;
+	margin-bottom: 2.5em;
+}
+
+section {
+	margin-top: 1em;
+}
+
+.button-container {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 2em;
+	padding-bottom: 1em;
+	padding-left: 20%;
+	padding-right: 20%;
+}
+
+.buttonlink {
+	border-radius: 10px;
+	padding-top: .2em;
+	padding-bottom: .2em;
+	padding-left: 1em;
+	padding-right: 1em;
+	text-align: center;
+	background-color: var(--buttonlink-bg-color);
+	color: var(--buttonlink-font-color);
+}
