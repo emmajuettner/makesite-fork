@@ -1,5 +1,5 @@
-<!-- title: Cracking The Dave & Buster’s Anomaly -->
+<!-- title: Cracking The Dave and Buster’s Anomaly -->
 <!-- author: Guilherme Rambo -->
-<!-- summary: The case of the vanishing Dave & Buster's audio iMessage. -->
+<!-- summary: The case of the vanishing Dave and Buster's audio iMessage. -->
 <!-- wordcount: 1153 -->
 <!-- link: https://rambo.codes/posts/2025-05-12-cracking-the-dave-and-busters-anomaly -->
