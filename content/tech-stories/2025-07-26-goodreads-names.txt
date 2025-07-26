@@ -1,0 +1,5 @@
+<!-- title: On the Utterly Bizarre Handling of Conflicting Names in Goodreads -->
+<!-- author: Ruth Kitchin Tillman -->
+<!-- summary: A truly weird mechanism for distinguishing same-named authors. -->
+<!-- wordcount: 828 -->
+<!-- link: https://ruthtillman.com/post/conflicting-author-names-goodreads/ -->
