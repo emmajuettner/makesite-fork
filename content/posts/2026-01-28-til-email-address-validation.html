@@ -1,0 +1,19 @@
+<!-- title: TIL - Email Address Validation -->
+<!-- summary: What is an email address? A miserable little pile of secrets! -->
+<p>Meta note: I'm going to start writing some short TIL posts about technical topics that I come across in the course of my work or personal tech tinkering. I was inspired by <a href="https://jvns.ca/til/">Julia Evans' TIL blog</a>. It seems like a great way to record the things I'm learning for later reference, and I'm hoping it will also be a positive thing to have in my portfolio when job-hunting. </p>
+<p>I went down a rabbit hole of email validation discourse today. It's a topic I've encountered before, but usually only in passing, and I wanted to figure out what's considered to be "best practice" here. </p>
+<p>The most authoritative source I found which concisely sums up the situation is <a href="https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html#email-address-validation">OWASP's cheat sheet</a> on email address validation. Some key points: </p>
+<ul>
+<li>Lots of strings that you probably don't want to accept as email addresses are, technically, valid email addresses. </li>
+<li>Just because something is a technically valid email address doesn't mean you can send an email to it. </li>
+<li>The only way to reliably tell if you're going to be able to send an email to an arbitrary address is to... try and send the email! </li>
+<li>They also recommend some basic initial validations which can rule out strings that you probably don't want to accept as email addresses. </li>
+</ul>
+<p>Some interesting discussions I found while researching: </p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/201323/how-can-i-validate-an-email-address-using-a-regular-expression">How can I validate an email address using a regular expression?</a> on Stack Overflow </li>
+<li><a href="https://stackoverflow.com/questions/48055431/can-it-cause-harm-to-validate-email-addresses-with-a-regex">Can it cause harm to validate email addresses with a regex?</a> on Stack Overflow </li>
+<li><a href="https://haacked.com/archive/2007/08/21/i-knew-how-to-validate-an-email-address-until-i.aspx/">I Knew How To Validate An Email Address Until I Read The RFC</a></li>
+</ul>
+<p>That last has an interesting comment by someone named David: "The best compromise I've seen so far is to have it complain if you use a "weird" character, but then offer you a chance to say "no, that <em>really</em> is my email address". That way it catches stupid mistakes, but lets you have the final say as to whether it's valid or not."</p>
+<p>That strikes me as an elegant solution if you don't want to block the rare user with an esoteric email address, but still want to provide some guidance in the more common situation where a user has simply entered a typo. Though of course, then you're back to square one with deciding when to display an "are you sure?" warning vs silently accepting the email, albeit with lower stakes. </p>
