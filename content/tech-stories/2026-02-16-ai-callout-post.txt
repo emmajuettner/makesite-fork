@@ -1,0 +1,5 @@
+<!-- title: An AI Agent Published a Hit Piece on Me -->
+<!-- author: Scott Shambaugh -->
+<!-- summary: This one is pretty grim! We now live in an age where people don't have to hand-craft petty callout posts anymore, they can just spin up an AI agent that does it on its own. -->
+<!-- wordcount: 1542 -->
+<!-- link: https://theshamblog.com/an-ai-agent-published-a-hit-piece-on-me/ -->
