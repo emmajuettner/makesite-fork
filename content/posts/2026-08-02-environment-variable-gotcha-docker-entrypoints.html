@@ -1,0 +1,35 @@
+<!-- title: An Environment Variable Gotcha with Docker Entrypoints -->
+<!-- summary: In which I learn the dangers of using dotted variables with shell form entrypoints. -->
+<p>I recently encountered an interesting quirk of handling environment variables while using Docker and wanted to record it here in case it proves useful again in the future, either to me or to someone else.</p>
+<p>Let's suppose I have a Java application which prints out the value of two environment variables, like so:</p>
+<pre><code class="java language-java">public class MyApp {
+
+    public static void main(String[] args) {
+        String myDottedVariableValue = System.getenv("my.dotted.variable");
+        System.out.println("my.dotted.variable=" + myDottedVariableValue);
+
+        String myUnderscoredVariableValue = System.getenv("my_underscored_variable");
+        System.out.println("my_underscored_variable=" + myUnderscoredVariableValue);
+    }
+}</code></pre>
+<p>Note that one of my variables has dots in it. This is pretty conventional for system properties in the Java/Spring ecosystem. So let's say I'm running this Java application in a Docker image. What will I see at runtime?</p>
+<p>Let's start by running our class in an Eclipse Temurin Docker base image with an exec form entrypoint:</p>
+<pre><code class="dockerfile language-dockerfile">FROM eclipse-temurin:25
+COPY MyApp.class .
+ENTRYPOINT ["java", "MyApp"]</code></pre>
+<p>When I build and run the image with a value provided for both variables:</p>
+<pre><code class="sh language-sh">docker build --tag 'my_image' -f Dockerfile . &amp;&amp; docker run -e my.dotted.variable=dotted -e my_underscored_variable=underscored my_image:latest</code></pre>
+<p>This is what I get:</p>
+<pre><code class="sh language-sh">my.dotted.variable=dotted
+my_underscored_variable=underscored</code></pre>
+<p>So both variable values are passed along for the Java application to use.</p>
+<p>Now let's change up the Dockerfile to use a shell form entrypoint instead:</p>
+<pre><code class="Dockerfile language-Dockerfile">FROM eclipse-temurin:25
+COPY MyApp.class .
+ENTRYPOINT java MyApp</code></pre>
+<p>Now I'll execute the exact same command to build/run the Docker image again:</p>
+<pre><code class="sh language-sh">docker build --tag 'my_image' -f Dockerfile . &amp;&amp; docker run -e my.dotted.variable=dotted -e my_underscored_variable=underscored my_image:latest</code></pre>
+<p>And here's the output I get at runtime:</p>
+<pre><code class="sh language-sh">my.dotted.variable=null
+my_underscored_variable=underscored</code></pre>
+<p>Suddenly my dotted variable is null! As it turns out, if you run your entrypoint through the shell, the shell may not pass along environment variables that are not named the way it expects. In a POSIX-compliant shell, environment variables are <a href="https://pubs.opengroup.org/onlinepubs/000095399/basedefs/xbd_chap08.html">not supposed to have dots in them</a>. And so our improperly named variable vanishes, while our other variable is passed along just fine.</p>
