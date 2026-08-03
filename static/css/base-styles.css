@@ -90,7 +90,7 @@ text-decoration:none; */
 if you want to style them separately,
 create styles for #leftSidebar and #rightSidebar */
 aside {
-	width: 200px;
+	width: 25%;
 	padding: 20px;
 	font-size: smaller;
 	/* this makes the sidebar text slightly smaller */
@@ -99,6 +99,7 @@ aside {
 /* this is the color of the main content area,
 between the sidebars! */
 main {
+	max-width: 73%;
 	flex: 1;
 	padding: 20px;
 	order: 2;
@@ -142,7 +143,6 @@ h1 {
 
 #topBar {
 	width: 100%;
-	height: 30px;
 	padding: 5px;
 	font-size: smaller;
 	text-align: center;
@@ -164,6 +164,14 @@ img {
 
 details summary {
 	cursor: pointer;
+}
+
+code {
+	padding-left: 20px;
+	padding-right: 20px;
+	overflow-x: scroll;
+	max-width: 100%;
+	display: inline-block;
 }
 
 .mutualAidRequest p {
