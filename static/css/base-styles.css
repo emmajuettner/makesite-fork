@@ -179,8 +179,9 @@ iframe {
 	display: inline-block;
 }
 
-.mutualAidRequest p {
-	margin-left: 50px;
+blockquote {
+	border-left: 2px solid;
+	padding-left: 10px;
 }
 
 .recipe {

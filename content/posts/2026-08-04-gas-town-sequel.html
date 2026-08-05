@@ -1,0 +1,85 @@
+<!-- title: Commentary on the Gas Town Sequel -->
+<!-- summary: In which I read Steve Yegge's latest vibe coding manifesto and have opinions about it. -->
+<p>I try not spend too much time dunking on people I disagree with. I don't think it's a particularly productive pastime, and there are better things I could do with my evening. But I am particularly mad about the AI-ified state of the world today for personal reasons, so I'm going to blow off some steam with a little bit of commentary.</p>
+<p>If you don't know what Gas Town was, you can read Steve Yegge's original post about it <a href="https://steve-yegge.medium.com/welcome-to-gas-town-4f25ee16dd04">here</a>. The short version is, it was a vibe coding orchestrator built earlier this year by Yegge, an opinionated software engineer who I would describe as one of the more radical advocates of vibe coding. I wasn't aware of him prior to Gas Town, so I can't speak to his prior record, but based on his Gas Town manifesto plus the post I'm writing about today, I would describe him as alarmingly detached from reality in regards to the future of AI within software development.</p>
+<p>To give some context from where I'm coming from in this critique: I'm a mid-level software engineer with just over 6 years of experience working on payments applications at a large bank. I would not describe myself as an expert on AI or even on software development more broadly. My outlook on AI is pretty negative. I concede that it can do some things that are fairly useful, some of the time. I think the promises currently being made by AI enthusiasts are wildly overblown. I also think that the modest benefits of AI coding tools do not outweigh the many well-documented harms of LLMs as they exist today. I don't use LLMs in my personal life. I do use them sparingly at work, because I started receiving stern emails from management when I was not using them at all.</p>
+<p>I should also say-- my impression is that Steve Yegge is pretty out there even for AI coding enthusiasts. I don't want this to come off as a straw man attack on more moderate AI coding enthusiasts. I have serious issues with them as well, but my critique of someone like Sean Goedecke or Simon Willison would look very different from this blog post, and I don't want to come off as though I'm flattening my ideological opposites into their most extreme version.</p>
+<p>I do think, though, that you can't fully draw a line between Yegge's approach and the approach of more moderate AI users. Simon Willison said it himself: "<a href="https://simonwillison.net/2026/May/6/vibe-coding-and-agentic-engineering/">Vibe coding and agentic engineering are getting closer than I’d like</a>." I think a lot of people who say they're doing "responsible" agentic engineering are not actually being as diligent as they'd like to have you think. And I've heard higher-ups at my company argue that the future is these kinds of agentic orchestrators where you have AI agents working around the clock and the human software engineer becomes more of an overseer. So, that's in part why I think it's important to push back against some of Yegge's absolutely batshit assertions here.</p>
+<p>From this point on, all block quotes are excerpts from Steve Yegge's recent post <a href="https://yegge.ai/essays/the-shape-of-things-to-come/">The Shape of Things to Come</a>. I do think the full thing is worth reading if you want the full context for this critique. I'm not especially interested in summarizing all of his points one by one; I'm just going to highlight a few bits that I found especially heinous.</p>
+<hr />
+<blockquote>
+  <p><a href="https://yegge.ai/gastown.html">Gas Town</a> was intended to be reusable, but I only ever wound up using it to build itself.</p>
+</blockquote>
+<p>Please note that Yegge was just as confident about Gas Town being the future as he is about his newest orchestration system in this latest post. From his Gas Town manifesto: "Gas Town is me marching into the Church of Public Opinion on AI-Assisted Coding, lifting my leg, and ripping a fart that will be smelt all around the world. Many of you may gag at my brand. But I suspect a few of you will like becoming <em>superheroes</em> enough that you’re willing to look past Gas Town’s quirks, and see it my way. This is how work should be done. It’s the best way already, and it will get better." Narrator: it did not get better.</p>
+<blockquote>
+  <p>To whet your appetite for today's post predictions: CI/CD as we know it will be dead by next year; I will show you its mathematical inevitability. It almost certainly gets replaced by a Mad Max-style thunderdome. At least, that's what I use now. So you prolly will too.</p>
+</blockquote>
+<p>As someone who works as a software developer in a regulated industry: lol, lmao. I can't wait for the all-hands meeting telling us we're discarding our deployment tollgates and rigid evidence collection processes in favor of the thunderdome.</p>
+<blockquote>
+  <p>And as another appetizer, human code review has very nearly run its course. Its vestigial SOC 2 compliance angle will keep it on life support, but by next year, human code review is completely done and gone.</p>
+</blockquote>
+<p>Again... I feel like this assertion should be completely laughable to anyone with experience doing professional software development. (Which Yegge has! Far more than I do, in fact! Which is part of why I find his writing so bizarre.)</p>
+<blockquote>
+  <p>My solution has been to create a token tap on $200 Max accounts, which for me work out to ~30x the list-price equivalent. So in reality I'm only spending about $2800/month out of pocket for my $87k "worth" of tokens. Though that number keeps growing alarmingly.<br />
+  In order to sustain my pace of development, I pay for currently twelve extra Max accounts, in addition to my personal one. Each account is tied to a dedicated named Google Workspace user in my domain (another $17/month per account). You mint 30-day credentials with Claude account, and then it becomes a problem of chaining your accounts together in an automatic rotation. As you build out your harness, just ask Fable to arrange for your agents to consume from the tap, either sequentially or using striping, and rotate accounts whenever one gets close to a limit.</p>
+</blockquote>
+<blockquote>
+  <p>As far as I know, this approach is not prohibited by anything in Anthropic's current Consumer Terms (eff. Oct 8, 2025) nor Usage Policy (eff. Sep 15, 2025). I am not sharing these credentials with anyone else, nor "misusing" them. And I saw that Anthropic has knowingly and publicly <a href="https://x.com/doodlestein/status/2012740971088289858?s=20">restored</a> a 22-Max-account setup like this one—every seat individually paid. But if you try this approach as a multi-person company then it's almost certainly a violation; I'd strongly recommend just using API billing at that point.</p>
+</blockquote>
+<p>I feel like this explains clearly why this model is not, in fact, the future. A large portion of software development is done by large businesses. Businesses can't access the discounted pricing of individual Max plans with this janky "token tap" setup. In fact, many businesses, <a href="https://www.404media.co/microsoft-tells-engineers-tokenmaxxing-is-not-what-we-are-optimizing-for/">including AI companies</a>, are telling engineers to be more frugal with their token usage. We are seeing larger corporations shift away from the sort of tokenmaxxing that Yegge is describing.</p>
+<p>And even if we're talking about individuals, most hobbyists or lone developers working on their own projects do not have $2800 per month to spend on tokens. Coincidentally, $2800 is approximately the sum of my basic living expenses (rent, utilities, groceries, healthcare, etc) for one month. I could feed and house a whole extra person in Chicago for the money Steve Yegge is spending on AI subscriptions. I find that morally repugnant.</p>
+<blockquote>
+  <p>Wheelhouse, my orchestrator/harness for Wyvern, is about six weeks old.</p>
+</blockquote>
+<p>Ah. So we're making these claims about a harness that, by definition, has not proven its efficacy in the long term? Cool, great. I'll note that Gas Town had been around for about three weeks when Yegge wrote his manifesto about that, and look how that went.</p>
+<blockquote>
+  <p>The code is mostly bash, because the agents said that was best for this, so bash it is.</p>
+</blockquote>
+<p>Truly, I cannot imagine being willing to rent my judgement from Anthropic to this degree.</p>
+<blockquote>
+  <p>I'm already moving so fast that I'm scaring my player base, who sent a delegation about it, asking for a roadmap. They're delighted but also very anxious about the pace of change. I've had to slow down my feature launches, and focus mostly on quality dimensions.</p>
+</blockquote>
+<p>Could it be that speed of feature launches is not actually the best metric for measuring success?</p>
+<blockquote>
+  <p>I'm trying to push the fleet as hard as I can on scaling up, but I also want it to work all night. You need a big work backlog to pull that off, since they implement things <strong>fast</strong>. You basically need to create a mountain of work. Fable is quite good at that; all you need to supply are ambition and light-touch direction.</p>
+</blockquote>
+<p>This reads to me as completely giving over your product decisions to the AI. Why? If you don't have enough work for the AI to do... stop giving it work? At this point it seems like Yegge's ostensible aim of working on this game has been trampled by his desire to be an AI visionary. </p>
+<blockquote>
+  <p>It was all completely unintentional, so the shape I keep finding must be important.</p>
+</blockquote>
+<p>I think this is less indicative that the Gas Town approach is somehow inherently the best because it keeps emerging, and more a product of Yegge's own preoccupations and attitudes towards AI. If you start from the assumption that the ideal AI system works through the night and is very hands-off for its human operator, I can see how you might reach a system shaped like Gas Town multiple times. I don't think that validates the correctness of that starting assumption. </p>
+<blockquote>
+  <p>It's not as easy as it might sound; working on Wheelhouse itself occupies about 20-25% of all my Wyvern work. I think that figure might turn out to be roughly constant over the life of systems with agentic harnesses. It's certainly not showing signs of slowing down yet.</p>
+</blockquote>
+<p>I feel like an unasked question here is, if you are spending 20-25% of your time just keeping all your AI plates spinning, is that really a better use of your time than being more thoughtfully engaged in the direction of the product? There's clearly a lot of motion happening in this and other tokenmaxxing systems; I'm just not convinced it is forward motion. </p>
+<blockquote>
+  <p>Gas Town was pretty messy, but Wheelhouse feels like it's finding its stride. And it has found its way to being roughly the same shape as Gas Town, but without the scars.</p>
+</blockquote>
+<p>I cannot stress enough, by Yegge's own admission, Wheelhouse has been around approximately 6 weeks.</p>
+<blockquote>
+  <p>Here's what Claude Fable 5 had to say about working in Wyvern and Wheelhouse: </p>
+</blockquote>
+<p>I hate it here. </p>
+<blockquote>
+  <p>Note that this all started 6-7 weeks ago with me saying to Claude, "I think I'd like an Emacs interface that lets me switch agents. Can we do that?" Everything else grew organically as I asked for more features and capabilities.</p>
+</blockquote>
+<p>Again, no planning or consideration of what the end goal is. This is a fundamentally careless way of working. Yegge seems proud of how thoughtless his approach to his work is. </p>
+<blockquote>
+  <p><em>I am not special</em>. I'm just ahead of you. My actual work is <em>just like</em> everyone else's work. You are going to run into these exact problems, very soon, and you will retrace all my steps here.</p>
+</blockquote>
+<p>I disagree strongly that Yegge's work is like my work, again, as a software engineer in a regulated industry. </p>
+<blockquote>
+  <p>You can't work at agentic speeds and block everything with human reviews. Those are incompatible.</p>
+</blockquote>
+<p>I actually agree with Yegge here, but I draw the opposite conclusion. He believes this incompatibility means we should discard human code review. I believe it means that "agentic speed" workflows like Yegge's are fundamentally incompatible with work where the outcomes matter. Don't make me tap the sign: </p>
+<img src="/img/memes/computer-cannot-be-held-accountable.png" alt="A computer can never be held accountable. Therefore a computer must never make a management decision." />
+<blockquote>
+  <p>As a result, human approval is currently baked into many companies' audited change-management controls and customer commitments. But the writing is on the wall: agentic throughput will straight-up <em>force</em> those controls to be rewritten. SOC 2 will no doubt survive, but "review" will no longer mean one human approving every diff.</p>
+</blockquote>
+<p>Or change management and audit requirements will force companies to drop the dream of fully automated luxury software development. I don't think the conclusion is inevitable here. </p>
+<blockquote>
+  <p>My proposal, which turned out to be a valid approach, was to Mad Max it: Just slam all the commits onto main, and then just friggin' deal with it. No bisections, no sequencing, no blame, none of that old crap. Just fix it and roll forward.</p>
+</blockquote>
+<p>He proceeds to back this up with the argument that game studios sometimes work in a similar manner. And I can't help but think— cool, but what if you're not building video games? No disrespect to game developers, but that is an industry where the potential real-world consequences of fucking up are relatively limited compared with many other industries. What if you're building software that manages people's health data, or moves people's money around, or interacts with the physical environment like IoT devices? If your merge checks are taking too long, it is not a viable solution to just skip the checks and push to main. I have seen teams do that and it tends to go poorly, and often slows things down more than validating the change properly would have. </p>
+<hr />
+<p>I'll stop here for now. I have not yet read Yegge's <a href="https://yegge.ai/essays/model-welfare/">related blog post on model welfare</a>, because I think I've gotten worked up enough for one day. For now, I'm going to log off, make a cup of tea, do some mending, and try to forget about AI for a little while. I sincerely wish that Yegge would do the same.</p>
