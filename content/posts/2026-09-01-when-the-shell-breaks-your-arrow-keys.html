@@ -1,0 +1,8 @@
+<!-- title: When The Shell Breaks Your Arrow Keys -->
+<!-- summary: What to do when you log onto a new server and find that none of your arrow keys work the way you expect. -->
+<p>A problem I ran into recently: I logged onto a new VM, started navigating around, and quickly realized that my arrow keys were not working. They were outputting things like <code>^[[A^[[C^[[D^[[B</code> instead of actually navigating the way I would expect when using bash.</p>
+<p>If you have seen this issue before, you may recognize this as a sign that my shell was not, in fact, set to bash. So I ran <code>echo $SHELL</code> to identify my current shell. It was <code>/bin/sh</code>, which upon further examination (<code>ls -la /bin/sh</code>) linked to <code>dash</code>, which <a href="https://unix.stackexchange.com/a/21738">doesn't support command line history or advanced editing</a>.</p>
+<p>So, I needed to set my login shell to bash. Luckily, that's easy enough:</p>
+<pre><code class="bash language-bash">chsh -s /bin/bash my_username</code></pre>
+<p>After running that and starting a new session, <code>echo $SHELL</code> evaluated to <code>/bin/bash</code>, and my arrow keys were working again.</p>
+<p>Hopefully this post will help someone who runs into this same issue in the future-- even if that person is just me!</p>
